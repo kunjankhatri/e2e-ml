@@ -50,6 +50,7 @@ def data():
     if request.method == 'GET':
         return f"The URL /data is accessed directly. Try going to '/form' to submit form"
     if request.method == 'POST':
+        print('Hi')
         # form_data = request.form
         # print(form_data)
         vehicle = request.form.to_dict()
