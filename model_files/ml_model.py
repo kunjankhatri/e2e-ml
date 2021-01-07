@@ -21,7 +21,7 @@ def preprocess_origin_cols(df):
     return df
 
 
-acc_ix, hpower_ix, cyl_ix = 3, 5, 1
+acc_ix, hpower_ix, cyl_ix = 2, 4, 0
 
 class CustomAttrAdder(BaseEstimator, TransformerMixin):
     def __init__(self, acc_on_power=True): # no *args or **kargs
@@ -57,24 +57,27 @@ def pipeline_transformer(data):
     
     full_pipeline = ColumnTransformer([
         ("num", num_pipeline, list(num_attrs)),
-        ("cat", OneHotEncoder(), cat_attrs),
+        ("cat", OneHotEncoder().fit_transform(data[cat_attrs]), cat_attrs),
         ])
     full_pipeline.fit_transform(data)
     return full_pipeline    
 
 
-def predict_mpg(config, model):
-    
+def predict_mpg(config, model, preproc_pipeline):
+    config = {str(k):int(v) for k,v in config.items()}
+    print('config:', config)
     if type(config) == dict:
-        df = pd.DataFrame(config)
+        df = pd.DataFrame(config, index=[0])
     else:
         df = config
     
     preproc_df = preprocess_origin_cols(df)
-    print(preproc_df)
-    pipeline = pipeline_transformer(preproc_df)
-    prepared_df = pipeline.transform(preproc_df)
-    print(len(prepared_df[0]))
-    y_pred = model.predict(prepared_df)
+    print('preproc_df:', preproc_df)
+    # pipeline = pipeline_transformer(preproc_df)
+    # prepared_df = pipeline.transform(preproc_df)
+    # print('prepared_df:', prepared_df)
+    # print(len(prepared_df[0]))
+    prepared_data = preproc_pipeline.transform(preproc_df)
+    y_pred = model.predict(prepared_data)
     return y_pred
     
