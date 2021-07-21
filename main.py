@@ -59,5 +59,5 @@ def data():
         #return jsonify(result)
         return render_template('data.html', result = result['mpg_prediction'])
 
-if __name__ == '__main__':
-    app.run(debug=True, port=9696)
+# if __name__ == '__main__':
+#     app.run(debug=True, port=9696)
