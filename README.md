@@ -2,7 +2,7 @@
 ### Aim: Predict the MPG value for a vehicle, given that we have other attributes of that vehicle
 
 ### Steps to run:
-1) Clone the repo
+1) Clone the repo from master branch
 2) Create a virtual python environment
 3) pip install -r requirements.txt in that environment
 4) download the data( http://archive.ics.uci.edu/ml/datasets/Auto+MPG)
