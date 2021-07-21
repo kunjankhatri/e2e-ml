@@ -12,6 +12,6 @@
 ## To check running app on AWS, 
 6) go to http://e2eml-env.eba-uiz2mcdm.us-east-2.elasticbeanstalk.com/
 
-### To make check EDA and model saving, see E2E.ipynb
+### To check EDA and model saving, see E2E.ipynb
 
 ## Code is highly inspired from https://www.freecodecamp.org/news/end-to-end-machine-learning-project-turorial/
